@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
-//linkedlists based on aspnesnotes #yale
+//linkedlists based on given aspnes notes 
 
 struct elt {
     struct elt *next;
