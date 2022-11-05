@@ -101,4 +101,3 @@ int main()
     lst_new(first);
     return 1;
 }
-
