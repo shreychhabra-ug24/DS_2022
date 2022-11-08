@@ -1,65 +1,65 @@
-// Binary Search Trees
+#include <stdio.h>
+#include <stdlib.h>
 
-struct nodeType {
-	int val;
-	struct nodeType * left;  // smaller
-	struct nodeType * right; // larger
+//defining the structure
+
+struct node{
+	int key;
+	struct node *left, *right;
 };
 
-typedef struct nodeType * NodeAddress;
+//creating the node
 
-/*
-
-4, left: 2, right: 7
-
-2, left: 1, right: 3
-
-7, left: 5, right: 9
-
-1, 3, 5, 9 -> left: NULL, right: NULL
-
-*/
-
-NodeAddress search(NodeAddress root, int val) {
-	if(root==NULL) return NULL;
-
-	if      ( val < root->val ) { return search(root->left , val);}
-	else if ( val > root->val ) { return search(root->right, val);}
-	else                        { return root;}
+struct node *new(int bleh){
+	struct node *temp = (struct node *) malloc(sizeof(struct node));
+	temp->key = bleh;
+	temp->left = temp->right = NULL;
+	return temp;
 }
 
-NodeAddress search2(NodeAddress root, int val) {
-	return root?((val==root->val)? root : (  ( val < root->val )? search2(root->left , val): search2(root->right, val)  ) ): NULL;
-}
+//traversing
 
-NodeAddress insert(NodeAddress root, int val) {
-	if(root==NULL) {return createNode(val);}
-
-	if      ( val < root->val ) { root->left  = insert(root->left , val);}
-	else if ( val > root->val ) { root->right = insert(root->right, val);}
-
-	return root;
-}
-
-NodeAddress insert2(NodeAddress root, int val) {
-	if(root==NULL) {return createNode(val);}
-
-	if ( val < root->val ) { 
-		if(root->left) return insert2(root->left, val);
-		else root->left = createNode(val);
-		return root->left;
+void trav(struct node *root){
+	if(root != NULL){
+		trav(root->left);	//traverses to the left subtree
+		printf("%d ->", root->key);		//traverses the root
+		trav(root->right);	//traverses to the right
 	}
-	else if ( val > root->val ) { 
-		if(root->right) return insert2(root->right, val);
-		else root->right = createNode(val);
-		return root->right;
-	}
-	
-	return root;
 }
 
-void inorder(NodeAddress root) {
-	if( root->left )  { inorder(root->left);       }
-	if( root )        { printf(" %s ", root->val); }
-	if( root->right ) { inorder(root->right);      }
+
+//node insertion
+
+struct node *ins_node(struct node *node, int key){
+	//for an empty subtree
+	if(node==NULL) return new(key);
+	//when insertion is performed to the right
+	if(key<node->key) node->left = ins_node(node->left, key);
+	else node -> right  = ins_node(node->right, key);
+	return node;
+}
+
+//finding the next subtree
+
+struct node *bleh2(struct node *node){
+	struct node *now = node;
+
+	while (now && now->left !=NULL)  now  = now ->left;
+	return now;
+}
+
+//main func
+int main(){
+	struct node *root = NULL; //setting root as null
+	root  = ins_node(root, 47);
+	root = insert(root, 88);
+	root = insert(root, 17);
+	root = insert(root, 6);
+	root = insert(root, 3);
+	root = insert(root, 0);
+	root = insert(root, 92);
+	root = insert(root, 69);
+
+	printf("after traversal, root= ");
+	trav(root);
 }
