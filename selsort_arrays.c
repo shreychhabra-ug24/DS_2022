@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 //x, y are loop counters
 //counter counts the total number of elements
 //arr stores the numbers in the array
