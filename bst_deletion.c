@@ -1,3 +1,4 @@
+//incomplete code
 struct node *remove(struct node *root, int key)
 {
 	if(root==NULL) return root;
