@@ -12,25 +12,20 @@ struct node{
 struct node* newnode(int bleh)
 {struct node *first = (struct node*) malloc(sizeof(struct node)); first->bleh = bleh; return first;}
  
- 
+//func for new list where we'll assign pointers
 void lst_new(struct node *first)
 {for(;first; first = first->next){printf("%d\n", first->bleh);}}
-     
+
+//creating the linked list struct, setting root node as null 
 struct node *linked_list(int n)
 {
-    struct node *first, *node = NULL;
-    int i;
-    for (i=0; i<n; i++)
-    {
-        if(node)
-        {
-            node->next = malloc(sizeof(struct node));
-            node = node->next;
+    struct node *first, *node = NULL;int i;
+    for (i=0; i<n; i++){
+        if(node){
+            node->next = malloc(sizeof(struct node)); node = node->next;
         }
-        else
-        {
-            first = malloc(sizeof(struct node));
-            node = first;
+        else{
+            first = malloc(sizeof(struct node)); node = first;
         }
         node->bleh = rand() % n;
     }
@@ -38,16 +33,15 @@ struct node *linked_list(int n)
     return first;
 }
  
- 
-void selection_sort(struct node **first)
+//code for selection sort
+void selection_sort(struct node **first) //setting ptr to first element address
 {
     struct node *head = *first, *i, *j, *min, *old, *bleh2, *list_prev;
     for(i = head; i->next; i = i->next){
         min = i;
         for(j = i; j->next; j = j->next){
             if(j->next->bleh < min->bleh){
-                old = j;
-                min = j->next;
+                old = j;min = j->next;
             }
         }
         if(min != i){
@@ -74,10 +68,5 @@ void selection_sort(struct node **first)
  
  
 int main(){
-    struct node *first;
-    first = linked_list(20);
-    lst_new(first);
-    selection_sort(&first);
-    lst_new(first);
-    return 1;
+    struct node *first;first = linked_list(20);selection_sort(&first);lst_new(first);return 1;
 }
