@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//initialising the structure
 struct node{
     int bleh;
     struct node *next;
@@ -8,22 +9,12 @@ struct node{
  
  
  
- 
 struct node* newnode(int bleh)
-{
-    struct node *first = (struct node*) malloc(sizeof(struct node));
-    first->bleh = bleh;
-    return first;
-}
+{struct node *first = (struct node*) malloc(sizeof(struct node)); first->bleh = bleh; return first;}
  
  
 void lst_new(struct node *first)
-{
-    for(;first; first = first->next)
-    {
-        printf("%d\n", first->bleh);
-    }
-}
+{for(;first; first = first->next){printf("%d\n", first->bleh);}}
      
 struct node *linked_list(int n)
 {
@@ -51,33 +42,23 @@ struct node *linked_list(int n)
 void selection_sort(struct node **first)
 {
     struct node *head = *first, *i, *j, *min, *old, *bleh2, *list_prev;
-    for(i = head; i->next; i = i->next)
-    {
+    for(i = head; i->next; i = i->next){
         min = i;
-        for(j = i; j->next; j = j->next)
-        {
-            if(j->next->bleh < min->bleh)
-            {
+        for(j = i; j->next; j = j->next){
+            if(j->next->bleh < min->bleh){
                 old = j;
                 min = j->next;
             }
         }
-        if(min != i)
-        {
-            if(i == head)
-            {
-                bleh2 = head->next;
-                head->next = min->next;
-                old->next = head;
-                min->next = bleh2;
+        if(min != i){
+            if(i == head){
+                bleh2 = head->next;head->next = min->next;
+                old->next = head; min->next = bleh2;
                 *first = min;
             }
-            else
-            {
-                for(list_prev = head; list_prev->next; list_prev = list_prev->next)
-                {
-                    if(list_prev->next == i)
-                        break;
+            else{
+                for(list_prev = head; list_prev->next; list_prev = list_prev->next){
+                    if(list_prev->next == i) break;
                 }
                 bleh2 = i;
                 list_prev->next = min;
@@ -92,8 +73,7 @@ void selection_sort(struct node **first)
  
  
  
-int main()
-{
+int main(){
     struct node *first;
     first = linked_list(20);
     lst_new(first);
