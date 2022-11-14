@@ -7,17 +7,17 @@ void swap(int *p, int *q) {
     *q = m;
 }
 
-//code for partition
+//code for partitioning the array
 int part(int array[], int x, int y) {
   
-    int pivot = array[y];
+    int pivot = array[y];           //sets pivot element to the yth (right) element of the array
   
-    int i = (x - 1);
-    for (int j = x; j < y; j++) {
-        if (array[j] <= pivot) {
+    int i = (x - 1);                //sets a variable i = left - 1
+    for (int j = x; j < y; j++) {   //for loop that iterates over the array, if the element j is less than the right element, it increments the right pointer
+        if (array[j] <= pivot) {    //however if the j pointer is < pivot, it increments left instead
         
             i++;
-      swap(&array[i], &array[j]);
+      swap(&array[i], &array[j]);   //after iteration, the swap is conducted
     }
   }
 
@@ -35,19 +35,11 @@ void qsort(int array[], int x, int y) {
   }
 }
 
-void print_arr(int array[], int size) {
-    for (int i = 0; i < size; ++i) {
-      printf("%d  ", array[i]);
-  }
-    printf("\n");
-}
 
 int main() {
     int list[] = {3, 9, 5, 6, 1, 98, 0};
     int n = sizeof(list) / sizeof(list[0]);
-    printf("unsorted list:  \n");
-    print_arr(list, n);
     qsort(list, 0, n - 1);
     printf("sorted list: \n");
-    print_arr(list, n);
+
 }
