@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+//with help from https://www.programiz.com/dsa/binary-search-tree
 //defining the structure
 
 struct node{
@@ -51,15 +51,6 @@ struct node *bleh2(struct node *node){
 //main func
 int main(){
 	struct node *root = NULL; //setting root as null
-	root  = ins_node(root, 47);
-	root = insert(root, 88);
-	root = insert(root, 17);
-	root = insert(root, 6);
-	root = insert(root, 3);
-	root = insert(root, 0);
-	root = insert(root, 92);
-	root = insert(root, 69);
-
 	printf("after traversal, root= ");
 	trav(root);
 }
