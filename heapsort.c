@@ -3,7 +3,7 @@
 //using binary trees
 
 //heapify function
-
+//may throw a segmentation fault occasionally, cant figure it out
 void heapify(int a[], int x, int k){
     int root = k;
     int l = 2*k+1;
